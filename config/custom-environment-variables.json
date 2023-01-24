@@ -1,7 +1,7 @@
 {
   "db" : "DB",
   "db_user" : "DB_User",
-  "db_password" : "@$123456#@",
+  "db_password" : "DB_Password",
   "db_host" : "DB_Host",
   "db_port" : "DB_Port",
   "dialect" : "Dialect",
