@@ -1,5 +1,7 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
+const config = require('config');
 
 const setRoutes = require('./router/routes');
 const setMiddlewares = require('./middlewares/middlewares');
