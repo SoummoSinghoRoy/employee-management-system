@@ -4,7 +4,7 @@
       <div class="col">
       </div>
       <div class="col">
-        <img src="/images/logo.png" alt="logo" height="80px" width="auto" class="mx-auto d-block mb-2">
+        <img src="/images/logo.png" alt="logo" height="80px" width="auto" class="mx-auto d-block my-2">
         <div class="card my-4">
           <div class="card-body bg-transparent">
             <h5 class="card-text text-center pt-2">Signup Now</h5>
@@ -13,11 +13,17 @@
             <form action="/auth/signup" method="post">
               <div class="mb-3">
                 <label for="username" class="form-label">User name</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="subscriber/modarator/john">
+                <input type="text" class="form-control <%= errors.username ? 'is-invalid' : '' %>" id="username" name="username" placeholder="subscriber/modarator/john">
+                <span class="text-danger">
+                  <%= errors.username %> 
+                </span>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="use strong password">
+                <input type="password" class="form-control <%= errors.password ? 'is-invalid' : '' %>" id="password" name="password" placeholder="use strong password">
+                <span class="text-danger">
+                  <%= errors.password %> 
+                </span>
               </div>
               <div class="mb-3">
                 <p class="mt-2">Already have an account? <a href="/auth/login">login now</a></p>

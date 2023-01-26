@@ -16,18 +16,19 @@ sequelize.authenticate()
             console.log(`Database not connected - ${err}`);
           })
 
-// let db = {}
+let db = {}
 
-// db.Sequelize = Sequelize;
-// db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
-require('./User')(sequelize, DataTypes);
-require('./Author_Organization')(sequelize, DataTypes);
-const Employee = require('./Employee')(sequelize, DataTypes);
-const Department = require('./Department')(sequelize, DataTypes);
+db.user = require('./User')(sequelize, DataTypes);
+db.author_organization = require('./Author_Organization')(sequelize, DataTypes);
+db.employee = require('./Employee')(sequelize, DataTypes);
+db.department = require('./Department')(sequelize, DataTypes);
 
-Department.hasOne(Employee);
-Employee.belongsTo(Department);
+// Department.hasOne(Employee);
+// Employee.belongsTo(Department);
+db.department.hasOne(db.employee);
+db.employee.belongsTo(db.department);
 
-// module.exports = db;
-module.exports = sequelize
+module.exports = db;
