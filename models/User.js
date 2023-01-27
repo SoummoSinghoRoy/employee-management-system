@@ -27,10 +27,6 @@ module.exports = (sequelize, DataTypes) => {
           throw new Error('Password length should be between 5 to 10 characters.');
         }
       },
-      get() {
-        const hashedPass = this.getDataValue('password')
-        return compareSync('password', hashedPass)
-      }
     },
   }, {
     freezeTableName: true,

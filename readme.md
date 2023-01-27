@@ -1,8 +1,7 @@
 # Pending -
 
-1. User.js model er password field e bcrypt niye kaj korechi & getter, setter use korechi. kintu dharona korchi setter method kaj korleo getter kaj nao korte pare. eta authentication, user login. sign up niye kaj kora hobe tkhn kheyal rakhte hobe. karon user er theke data paoyar por db te save houyar somoy hashed akare encrypted hoye save hocche er fole password kintu vinno hocche. tai user login korar somoy obosyoi encryption venge/compare kore kaj korte hobe ja apatoto getter er madhyome korechi. jodi kaj na hoy tobe login controller niye kaj korar somoy korbo.
-2. User & employee 2 ta phase ke alada rakha hobe. onk ta erkm user hisebe dekha gelo admin, password evabe db te save hobe.  
-3. jodi user logged in hoy tkhn header navigation block rakhte hobe na hole intially hidden rakhte hobe.
+1. User & employee 2 ta phase ke alada rakha hobe. onk ta erkm user hisebe dekha gelo admin, password evabe db te save hobe.  
+2. jodi user logged in hoy tkhn header navigation block rakhte hobe na hole intially hidden rakhte hobe.
 
 # What i learned from this project?
 
