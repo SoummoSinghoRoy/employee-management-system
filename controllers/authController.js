@@ -1,5 +1,4 @@
 const {validationResult} = require('express-validator');
-const bcrypt = require('bcrypt');
 
 const db = require('../models/index');
 let User = db.user
@@ -37,8 +36,7 @@ exports.logInGetController = (req, res, next) => {
   })
 }
 
-exports.logInPostController = async (req, res, next) => {
-  let {username, password} = req.body
+exports.logInPostController = (req, res, next) => {
   let errors = validationResult(req).formatWith(error => error.msg)
 
   if(!errors.isEmpty()) {
@@ -47,17 +45,19 @@ exports.logInPostController = async (req, res, next) => {
       errors: errors.mapped()
     })
   }
-  try {
-    const user = await User.findOne({where: {username}})
-    const matchPassword = await bcrypt.compare(password, user.password)
-    if(user && matchPassword) {
-      return res.redirect('/dashboard')
-    } else {
-      return res.redirect('/auth/signup')
-    }
+  res.redirect('/dashboard')
+  
+}
 
-  } catch (error) {
-    console.log(error);
-    next(error)
-  }
+exports.logOutController = (req, res, next) => {
+  req.logout((err) => {
+    if(err) {
+      console.log(error);
+      next(err)
+    }
+    req.session.destroy((err) => {
+      console.log(err);
+    })
+    res.redirect('/auth/login')
+  })
 }

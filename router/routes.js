@@ -1,6 +1,12 @@
 const authRoute = require('./authRoute');
+const dashboardRoute = require('./dashboardRoute');
+
 
 const routes = [
+  {
+    path: '/dashboard',
+    handler: dashboardRoute
+  },
   {
     path: '/auth',
     handler: authRoute

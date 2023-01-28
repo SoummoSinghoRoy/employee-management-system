@@ -14,7 +14,7 @@ setRoutes(app)
 
 const PORT = process.env.PORT || 8080
 
-db.sequelize.sync({ force: true, alter: true })
+db.sequelize.sync()
         .then(() => {
           app.listen(PORT, () => {
             console.log(`Server is running successfully on port: ${PORT}`);
