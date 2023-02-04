@@ -1,8 +1,11 @@
 <%- include('../../partials/header.ejs') %>
-<div class="container">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <h2 class="text-center">Welcome to dashboard</h2>
+<div class="container-fluid">
+  <div class="row g-4">
+    <div class="col-3 px-0" style="background-color: #86A3B8;">
+      <%- include('../../partials/sidebar.ejs') %>
+    </div>
+    <div class="col-9">
+      <h4>Welcome to dashboard</h4>
     </div>
   </div>
 </div>
