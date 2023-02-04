@@ -24,7 +24,6 @@ exports.signUpPostController = async (req, res, next) => {
     await User.create({username, password})
     res.redirect('/auth/login');
   } catch (error) {
-    console.log(error);
     next(error)
   }
 }
@@ -45,6 +44,7 @@ exports.logInPostController = (req, res, next) => {
       errors: errors.mapped()
     })
   }
+  req.session.isloggedIn = true
   res.redirect('/dashboard')
   
 }
@@ -52,12 +52,13 @@ exports.logInPostController = (req, res, next) => {
 exports.logOutController = (req, res, next) => {
   req.logout((err) => {
     if(err) {
-      console.log(error);
       next(err)
     }
-    req.session.destroy((err) => {
-      console.log(err);
-    })
+  })
+  req.session.destroy((err) => {
+    if(err) {
+      next(err)
+    }
     res.redirect('/auth/login')
   })
 }

@@ -16,7 +16,7 @@ router.get('/signup', signUpGetController);
 router.post('/signup', signupValidator, signUpPostController);
 
 router.get('/login', logInGetController);
-router.post('/login', loginValidator, passport.authenticate('local', { failureRedirect: '/auth/login', failureMessage: true}),  logInPostController);
+router.post('/login', loginValidator, passport.authenticate('local', { failureRedirect: '/auth/login'}),  logInPostController);
 
 router.get('/logout', logOutController);
 

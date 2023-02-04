@@ -11,8 +11,24 @@ app.set('views', 'views');
 setMiddlewares(app)
 setRoutes(app)
 
+app.get('/', (req, res) => {
+  res.status(200).send('Welcome')
+})
+app.use((req,res,next) => {
+  let error = new Error('404 page not found')
+  error.status = 404
+  next(error)
+})
 
-const PORT = process.env.PORT || 8080
+app.use((error, req, res, next) => {
+  if(error.status === 404) {
+    return res.send('404 not found')
+  }
+  console.log(error);
+  return res.send('500 server error')
+})
+
+const PORT = process.env.PORT || 4000
 
 db.sequelize.sync()
         .then(() => {

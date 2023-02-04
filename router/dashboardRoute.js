@@ -4,7 +4,7 @@ const
   {
     dashboardGetController
   } = require('../controllers/dashboardController');
-const {isAuthenticated} = require('../middlewares/authenticationMiddleware');
+const {isAuthenticated} = require('../middlewares/authentication');
 
 router.get('/', isAuthenticated, dashboardGetController);
 
