@@ -17,7 +17,7 @@ const options = {
 
 const connection = mysql2.createPool(options)
 
-const sessionStore = new MySQLStore({}, connection, (err) => {
+const sessionStore = new MySQLStore({expiration: 21600000,}, connection, (err) => {
   if(err) {
     console.log(err);
   }
