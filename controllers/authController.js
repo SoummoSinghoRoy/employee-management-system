@@ -44,9 +44,7 @@ exports.logInPostController = (req, res, next) => {
       errors: errors.mapped()
     })
   }
-  req.session.isloggedIn = true
-  res.redirect('/dashboard')
-  
+  next()
 }
 
 exports.logOutController = (req, res, next) => {
