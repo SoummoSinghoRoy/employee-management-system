@@ -1,5 +1,19 @@
 <%- include('../../partials/header.ejs') %>
 <div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <% if (errors !== null) { %>
+        <% const msgs = [errors.username, errors.password] %>
+        <% msgs.forEach(msg => { %>
+          <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
+            <strong><%= msg %> </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% }) %> 
+      <% } %>
+    </div>
+  </div>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
     </div>
@@ -13,14 +27,11 @@
           <form action="/auth/login" method="post">
             <div class="mb-3">
               <label for="username" class="form-label">User name</label>
-              <input type="text" class="form-control" id="username" name="username" placeholder="subscriber/modarator/john">
+              <input type="text" class="form-control" id="username" name="username" placeholder="enter valid username">
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control <%= errors.password ? 'is-invalid' : '' %>" id="password" name="password" placeholder="use strong password">
-              <span class="text-danger">
-                <%= errors.password %> 
-              </span>
+              <input type="password" class="form-control" id="password" name="password" placeholder="enter valid password">
             </div>
             <div class="mb-3">
               <p class="mt-2">Don't have an account? <a href="/auth/signup">signup now</a></p>

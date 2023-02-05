@@ -1,8 +1,12 @@
 const authRoute = require('./authRoute');
 const dashboardRoute = require('./dashboardRoute');
-
+const authorRoute = require('./authorRoute');
 
 const routes = [
+  {
+    path: '/organization',
+    handler: authorRoute
+  },
   {
     path: '/dashboard',
     handler: dashboardRoute

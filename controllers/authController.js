@@ -6,7 +6,7 @@ let User = db.user
 exports.signUpGetController = (req, res, next) => {
   return res.render('pages/auth/signUp.ejs', {
     title: "Sign up here",
-    errors: {}
+    errors: null
   })
 }
 
@@ -31,13 +31,12 @@ exports.signUpPostController = async (req, res, next) => {
 exports.logInGetController = (req, res, next) => {
   return res.render('pages/auth/logIn.ejs', {
     title: "Log in here",
-    errors: {}
+    errors: null
   })
 }
 
 exports.logInPostController = (req, res, next) => {
   let errors = validationResult(req).formatWith(error => error.msg)
-
   if(!errors.isEmpty()) {
     return res.render('pages/auth/logIn.ejs', {
       title: "Log in here",
