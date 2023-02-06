@@ -1,11 +1,12 @@
 const router = require('express').Router()
+const {isAuthenticated} = require('../middlewares/authentication');
 
 const 
   {
     dashboardGetController
   } = require('../controllers/dashboardController');
-const {isAuthenticated} = require('../middlewares/authentication');
 
+  
 router.get('/', isAuthenticated, dashboardGetController);
 
 module.exports = router;

@@ -3,5 +3,5 @@ exports.isAuthenticated = (req, res, next) => {
     req.session.isloggedIn = true
     return next()
   }
-  res.redirect('/auth/login');
+  return res.redirect('/auth/login');
 }

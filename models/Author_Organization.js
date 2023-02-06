@@ -12,11 +12,15 @@ module.exports = (sequelize, DataTypes) => {
       //or
       //type: DataTypes.DATEONLY,
       get() {
-        return moment(this.getDataValue('openingDay')).format('YYYY-MM-DD')
+        return moment(this.getDataValue('establishDay')).format('YYYY-MM-DD')
       }
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    licenceNo: {
+      type: DataTypes.BIGINT,
       allowNull: false
     },
     email: {
@@ -34,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     },
-    area: {
+    street: {
       type: DataTypes.STRING,
       allowNull: false, 
     },
