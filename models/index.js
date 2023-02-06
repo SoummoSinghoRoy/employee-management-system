@@ -22,7 +22,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require('./User')(sequelize, DataTypes);
-db.author_organization = require('./Author_Organization')(sequelize, DataTypes);
 db.employee = require('./Employee')(sequelize, DataTypes);
 db.department = require('./Department')(sequelize, DataTypes);
 

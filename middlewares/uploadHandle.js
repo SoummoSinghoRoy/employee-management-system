@@ -1,8 +1,8 @@
 const multer = require('multer');
 const path = require('path');
 
-const coverPicStorage = picStorage('public/uploads/a_organization')
-const coverPicExpectSize = 1024 * 500
+const employeePicStorage = picStorage('public/uploads/a_organization')
+const employeePicExpectSize = 1024 * 500
 
 function picStorage (uploadLocation) {
   return multer.diskStorage({
@@ -35,4 +35,4 @@ function picUpload (storage, filesize) {
     })
 }
 
-exports.coverPicUpload = picUpload(coverPicStorage, coverPicExpectSize);
+exports.employeePicUpload = picUpload(employeePicStorage, employeePicExpectSize);

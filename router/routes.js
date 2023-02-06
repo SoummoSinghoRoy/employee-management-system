@@ -1,11 +1,11 @@
 const authRoute = require('./authRoute');
 const dashboardRoute = require('./dashboardRoute');
-const authorRoute = require('./authorRoute');
+const employeeRoute = require('./employeeRoute');
 
 const routes = [
   {
-    path: '/organization',
-    handler: authorRoute
+    path: '/employee',
+    handler: employeeRoute
   },
   {
     path: '/dashboard',
