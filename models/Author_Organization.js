@@ -7,6 +7,14 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    licenceNo: {
+      type: DataTypes.BIGINT,
+      allowNull: false
+    },
     establishDay: {
       type: DataTypes.DATE,
       //or
@@ -15,12 +23,8 @@ module.exports = (sequelize, DataTypes) => {
         return moment(this.getDataValue('establishDay')).format('YYYY-MM-DD')
       }
     },
-    name: {
+    coverPic: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    licenceNo: {
-      type: DataTypes.BIGINT,
       allowNull: false
     },
     email: {
@@ -53,11 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     country: {
       type: DataTypes.STRING,
       allowNull: false, 
-    },
-    coverPic: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+    }
   },{
     freezeTableName: true,
     timestamps: false

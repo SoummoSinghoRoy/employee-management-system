@@ -7,3 +7,8 @@ exports.authorRegistrationGetController = (req, res, next) => {
     error: null
   })
 }
+
+exports.authorRegistrationPostController = (req, res, next) => {
+  console.log(req.body);
+  console.log(req.file);
+}

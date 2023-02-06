@@ -5,7 +5,70 @@
       <%- include('../../partials/sidebar.ejs') %>
     </div>
     <div class="col-9">
-      <form action=""></form>
+      <div class="card m-4">
+        <div class="card-body">
+          <h4 class="text-secondary text-center my-4">Employee Registration</h4>
+          <form action="/organization/registration" method="post" enctype="multipart/form-data" class="my-3">
+            <div class="row">
+              <div class="col">
+                <label for="name" class="fw-semibold mb-1">Organization Name</label>
+                <input type="text" class="form-control" id="name" name="name">
+              </div>
+              <div class="col">
+                <label for="licenceNo" class="fw-semibold mb-1">Licence No.</label>
+                <input type="number" class="form-control" id="licenceNo" name="licenceNo">
+              </div>
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <label for="establishDay" class="fw-semibold mb-1">Establish Date</label>
+                <input type="date" class="form-control" id="establishDay" name="establishDay">
+              </div>
+              <div class="col">
+                <label for="coverPic" class="fw-semibold mb-1">Picutre</label>
+                <input type="file" class="form-control" id="coverPic" name="coverPic">
+                <p class="text-warning mt-2" id="warning">Image must be less then 500kb & resulation width 400px * height 250px</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="email" class="fw-semibold mb-1">Email</label>
+                <input type="email" class="form-control" id="email" name="email">
+              </div>
+              <div class="col">
+                <label for="contactNo" class="fw-semibold mb-1">Contact No.</label>
+                <input type="tel" class="form-control" id="contactNo" name="contactNo">
+              </div>
+            </div>
+
+            <h5 class="text-muted my-3">Address</h5>
+            <div class="row">
+              <div class="col">
+                <label for="street" class="fw-semibold mb-1">Street</label>
+                <input type="text" class="form-control" id="street" name="street">
+              </div>
+              <div class="col">
+                <label for="city" class="fw-semibold mb-1">City</label>
+                <input type="text" class="form-control" id="city" name="city">
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="col">
+                <label for="district" class="fw-semibold mb-1">District</label>
+                <input type="text" class="form-control" id="district" name="district">
+              </div>
+              <div class="col">
+                <label for="country" class="fw-semibold mb-1">Country</label>
+                <input type="text" class="form-control" id="country" name="country">
+              </div>
+            </div>
+            
+            <input class="btn btn-primary" type="submit" value="Registration">
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
