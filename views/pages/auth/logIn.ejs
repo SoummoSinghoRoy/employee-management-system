@@ -4,13 +4,18 @@
     <div class="col-3"></div>
     <div class="col-6">
       <% if (errors !== null) { %>
-        <% const msgs = [errors.username, errors.password] %>
-        <% msgs.forEach(msg => { %>
+        <% if (errors.username) { %>
           <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
-            <strong><%= msg %> </strong>
+            <strong><%=  errors.username %> </strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
-        <% }) %> 
+        <% } %>
+        <% if (errors.password) { %>
+          <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
+            <strong><%=  errors.password %> </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% } %>
       <% } %>
     </div>
   </div>
