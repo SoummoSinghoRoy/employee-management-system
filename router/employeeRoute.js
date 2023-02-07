@@ -3,7 +3,7 @@ const { isAuthenticated } = require('../middlewares/authentication');
 const {
   employeeRegistrationGetController, 
   employeeRegistrationPostController
-} = require('../controllers/employeeRegistrationController');
+} = require('../controllers/employeeController');
 const { employeePicUpload } = require('../middlewares/uploadHandle');
 
 router.get('/registration', isAuthenticated, employeeRegistrationGetController);

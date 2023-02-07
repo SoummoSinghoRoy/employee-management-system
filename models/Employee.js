@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = (sequelize, DataTypes) => {
   const Employee = sequelize.define('Employee', {
     id: {
@@ -7,6 +9,23 @@ module.exports = (sequelize, DataTypes) => {
     },
     fullName: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false, 
+    },
+    salary: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    joiningDate: {
+      type: DataTypes.DATE,
+      //or
+      //type: DataTypes.DATEONLY,
+      get() {
+        return moment(this.getDataValue('openingDay')).format('YYYY-MM-DD')
+      },
       allowNull: false
     },
     email: {
@@ -27,6 +46,15 @@ module.exports = (sequelize, DataTypes) => {
     profilePic: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    nid_no: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true
+    },
+    education: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     present_area: {
       type: DataTypes.STRING,
@@ -59,16 +87,7 @@ module.exports = (sequelize, DataTypes) => {
     permanent_country: {
       type: DataTypes.STRING,
       allowNull: false, 
-    },
-    nid_no: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true
-    },
-    role: {
-      type: DataTypes.STRING,
-      allowNull: false, 
-    },
+    }
   }, {
     freezeTableName: true,
     timestamps: false
