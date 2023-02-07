@@ -3,3 +3,7 @@
   background: none;
   padding-left: 2px;
 }
+
+#department_table {
+  width: 60%;
+}

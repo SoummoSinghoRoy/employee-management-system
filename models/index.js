@@ -27,7 +27,7 @@ db.department = require('./Department')(sequelize, DataTypes);
 
 // Department.hasOne(Employee);
 // Employee.belongsTo(Department);
-db.department.hasOne(db.employee);
+db.department.hasMany(db.employee);
 db.employee.belongsTo(db.department);
 
 module.exports = db;
