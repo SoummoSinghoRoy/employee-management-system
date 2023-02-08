@@ -35,7 +35,7 @@
 
         <div class="card-body">
           <h5 class="text-secondary mb-3">List of departments</h5>
-          <table class="table table-bordered table-striped" id="department_table">
+          <table class="table table-bordered table-hover" id="department_table">
             <thead>
               <tr class="text-center">
                 <th>No.</th>
@@ -43,18 +43,22 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td class="text-center">1</td>
-                <td>Software development</td>
-                <td class="text-center">
-                  <div class="d-grid gap-2 d-md-block">
-                    <a class="btn btn-outline-warning px-4" href="#" role="button">Edit</a>
-                    <a class="btn btn-outline-danger" href="#" role="button">Delete</a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            <% if (departmentList.length !== 0) { %>
+             <% departmentList.forEach(list => { %>
+              <tbody>
+                <tr>
+                  <td class="text-center"> <%= list.id %>  </td>
+                  <td><%= list.departmentName %> </td>
+                  <td class="text-center">
+                    <div class="d-grid gap-2 d-md-block">
+                      <a class="btn btn-outline-warning px-4" href="#" role="button">Edit</a>
+                      <a class="btn btn-outline-danger" href="#" role="button">Delete</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+             <% }) %>
+            <% }else %>
           </table>
         </div>
       </div>

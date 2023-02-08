@@ -2,13 +2,13 @@ const authRoute = require('./authRoute');
 const dashboardRoute = require('./dashboardRoute');
 const employeeRoute = require('./employeeRoute');
 const departmentRoute = require('./departmentRoute');
-const departmentApiRoute = require('../api/departmentApiRoute');
+// const departmentApiRoute = require('../api/departmentApiRoute');
 
 const routes = [
-  {
+  /*{
     path: '/api/department',
     handler: departmentApiRoute
-  },
+  },*/
   {
     path: '/department',
     handler: departmentRoute
