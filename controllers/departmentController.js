@@ -43,3 +43,16 @@ exports.departmentCreatePostController = async (req, res, next) => {
     next(error)
   }
 }
+
+exports.departmentDeleteController = async (req, res, next) => {
+  const departmentId = req.params.id
+  
+  try {
+    await Department.destroy({
+      where: {id: departmentId}
+    })
+    res.redirect('/department')
+  } catch (error) {
+    next(error)
+  }
+}
