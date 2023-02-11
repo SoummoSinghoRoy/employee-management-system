@@ -56,3 +56,20 @@ exports.departmentDeleteController = async (req, res, next) => {
     next(error)
   }
 }
+
+exports.departmentNameEditController = async (req, res, next) => {
+  let {departmentUpdateName} = req.body
+  let { id } = req.params
+
+  try {
+    await Department.update(
+      { departmentName: departmentUpdateName },
+      { where: {
+        id
+      }}
+    )
+    res.redirect('/department')
+  } catch (error) {
+    next(error)
+  }
+}
