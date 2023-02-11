@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    present_area: {
+    present_street: {
       type: DataTypes.STRING,
       allowNull: false, 
     },
@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false, 
     },
-    permanentt_area: {
+    permanent_street: {
       type: DataTypes.STRING,
       allowNull: false, 
     },

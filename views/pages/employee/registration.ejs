@@ -11,24 +11,44 @@
           <form action="/employee/registration" method="post" enctype="multipart/form-data" class="my-3">
             <div class="row">
               <div class="col">
-                <label for="name" class="fw-semibold mb-1">Organization Name</label>
-                <input type="text" class="form-control" id="name" name="name">
+                <label for="fullName" class="fw-semibold mb-1">Employee Name</label>
+                <input type="text" class="form-control" id="fullName" name="fullName">
               </div>
               <div class="col">
-                <label for="licenceNo" class="fw-semibold mb-1">Licence No.</label>
-                <input type="number" class="form-control" id="licenceNo" name="licenceNo">
+                <label for="departmnet" class="fw-semibold mb-1">Choose department</label>
+                <% if (departmentList.length !== 0) { %>
+                  <select class="form-select" name="departmnet" aria-label="Default select example">
+                    <option selected>Select one department...</option>
+                    <% departmentList.forEach(list => { %>
+                      <option value="<%= list.id %>"><%= list.departmentName %></option>
+                    <% }) %>
+                  </select>
+                <% }else {%>
+                  <p class="py-2">Create department fist <a class="text-decoration-none" href="/department">create now</a></p>
+                <% } %>
               </div>
             </div>
 
             <div class="row my-3">
               <div class="col">
-                <label for="establishDay" class="fw-semibold mb-1">Establish Date</label>
-                <input type="date" class="form-control" id="establishDay" name="establishDay">
+                <label for="joiningDate" class="fw-semibold mb-1">Joined Date</label>
+                <input type="date" class="form-control" id="establishDay" name="joiningDate">
               </div>
               <div class="col">
-                <label for="coverPic" class="fw-semibold mb-1">Picutre</label>
-                <input type="file" class="form-control" id="coverPic" name="coverPic">
-                <p class="text-warning mt-2" id="warning">Image must be less then 500kb & resulation width 400px * height 250px</p>
+                <label for="profilePic" class="fw-semibold mb-1">Picutre</label>
+                <input type="file" class="form-control" id="profilePic" name="profilePic">
+                <p class="text-warning mt-2" id="warning">Image must be less then 200kb & resulation width 200px * height 200px</p>
+              </div>
+            </div>
+
+            <div class="row my-3">
+              <div class="col">
+                <label for="role" class="fw-semibold mb-1">Role</label>
+                <input type="text" class="form-control" id="role" name="role">
+              </div>
+              <div class="col">
+                <label for="salary" class="fw-semibold mb-1">Salary</label>
+                <input type="text" class="form-control" id="salary" name="salary">
               </div>
             </div>
 
@@ -43,25 +63,58 @@
               </div>
             </div>
 
-            <h5 class="text-muted my-3">Address</h5>
-            <div class="row">
+            <div class="row my-3">
               <div class="col">
-                <label for="street" class="fw-semibold mb-1">Street</label>
-                <input type="text" class="form-control" id="street" name="street">
+                <label for="nid_no" class="fw-semibold mb-1">National id no</label>
+                <input type="number" class="form-control" id="nid_no" name="nid_no">
               </div>
               <div class="col">
-                <label for="city" class="fw-semibold mb-1">City</label>
-                <input type="text" class="form-control" id="city" name="city">
+                <label for="education" class="fw-semibold mb-1">Education status</label>
+                <input type="text" class="form-control" id="education" name="education">
+              </div>
+            </div>
+
+            <h5 class="text-muted my-3">Present Address</h5>
+            <div class="row">
+              <div class="col">
+                <label for="present_street" class="fw-semibold mb-1">Street</label>
+                <input type="text" class="form-control" id="present_street" name="present_street">
+              </div>
+              <div class="col">
+                <label for="present_city" class="fw-semibold mb-1">City</label>
+                <input type="text" class="form-control" id="present_city" name="present_city">
               </div>
             </div>
             <div class="row my-3">
               <div class="col">
-                <label for="district" class="fw-semibold mb-1">District</label>
-                <input type="text" class="form-control" id="district" name="district">
+                <label for="present_district" class="fw-semibold mb-1">District</label>
+                <input type="text" class="form-control" id="present_district" name="present_district">
               </div>
               <div class="col">
-                <label for="country" class="fw-semibold mb-1">Country</label>
-                <input type="text" class="form-control" id="country" name="country">
+                <label for="present_country" class="fw-semibold mb-1">Country</label>
+                <input type="text" class="form-control" id="present_country" name="present_country">
+              </div>
+            </div>
+
+            <h5 class="text-muted my-3">PermanentAddress</h5>
+            <div class="row">
+              <div class="col">
+                <label for="permanent_street" class="fw-semibold mb-1">Street</label>
+                <input type="text" class="form-control" id="permanent_street" name="permanent_street">
+              </div>
+              <div class="col">
+                <label for="permanent_city" class="fw-semibold mb-1">City</label>
+                <input type="text" class="form-control" id="permanent_city" name="permanent_city">
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="col">
+                <label for="permanent_district" class="fw-semibold mb-1">District</label>
+                <input type="text" class="form-control" id="permanent_district" name="permanent_district">
+              </div>
+              <div class="col">
+                <label for="permanent_country" class="fw-semibold mb-1">Country</label>
+                <input type="text" class="form-control" id="permanent_country" name="permanent_country">
               </div>
             </div>
             

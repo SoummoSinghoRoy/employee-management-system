@@ -7,7 +7,7 @@ const {
 const { employeePicUpload } = require('../middlewares/uploadHandle');
 
 router.get('/registration', isAuthenticated, employeeRegistrationGetController);
-router.post('/registration', isAuthenticated, employeePicUpload.single(''), employeeRegistrationPostController);
+router.post('/registration', isAuthenticated, employeePicUpload.single('profilePic'), employeeRegistrationPostController);
 
 router.get('/profile');
 
