@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 
-const employeePicStorage = picStorage('public/uploads/a_organization')
+const employeePicStorage = picStorage('public/uploads/employee')
 const employeePicExpectSize = 1024 * 200
 
 function picStorage (uploadLocation) {

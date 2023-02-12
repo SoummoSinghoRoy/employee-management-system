@@ -24,9 +24,22 @@ module.exports = (sequelize, DataTypes) => {
       //or
       //type: DataTypes.DATEONLY,
       get() {
-        return moment(this.getDataValue('openingDay')).format('YYYY-MM-DD')
+        return moment(this.getDataValue('joiningDate')).format('YYYY-MM-DD')
       },
       allowNull: false
+    },
+    dateOfBirth: {
+      // type: DataTypes.DATE,
+      //or
+      type: DataTypes.DATEONLY,
+      get() {
+        return moment(this.getDataValue('dateOfBirth')).format('YYYY-MM-DD')
+      },
+      allowNull: false
+    },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false, 
     },
     email: {
       type: DataTypes.STRING,
@@ -48,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     nid_no: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true
     },

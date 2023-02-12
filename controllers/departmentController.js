@@ -32,13 +32,7 @@ exports.departmentCreatePostController = async (req, res, next) => {
   }
   try {
     await Department.create({departmentName})
-    const departmentList = await Department.findAll({raw: true})
-
-    res.render('pages/department/department.ejs', {
-      title: 'Depratments',
-      errors: null,
-      departmentList
-    })
+    res.redirect('/department')
   } catch (error) {
     next(error)
   }
