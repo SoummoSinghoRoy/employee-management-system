@@ -7,3 +7,8 @@
 #department_table {
   width: 60%;
 }
+
+#employee_table {
+  table-layout: fixed;
+  width: 2000px;
+}

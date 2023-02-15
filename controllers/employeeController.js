@@ -83,12 +83,15 @@ exports.employeeRegistrationPostController = async (req, res, next) => {
 
 exports.getAllEmployeeController = async (req, res, next) => {
   try {
-    const allEmployee = await Employee.findAll({
-      include: Department,
-    })
-    console.log(allEmployee[0].Department.id);
+    let employees = []
+    const allEmployees = await Employee.findAll({include: Department})
+    allEmployees.map((employee) => {
+      const parsedEmployee = JSON.parse(JSON.stringify(employee))
+      employees.push(parsedEmployee)
+    });
     res.render('../views/pages/employee/allEmployee.ejs', {
       title: 'All employee list',
+      employees
     })
   } catch (error) {
     next(error)
