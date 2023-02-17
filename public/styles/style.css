@@ -10,5 +10,9 @@
 
 #employee_table {
   table-layout: fixed;
-  width: 2000px;
+  width: 1500px;
+}
+
+.profilePic img {
+  border-radius: 50%;
 }

@@ -84,14 +84,34 @@ exports.employeeRegistrationPostController = async (req, res, next) => {
 exports.getAllEmployeeController = async (req, res, next) => {
   try {
     let employees = []
-    const allEmployees = await Employee.findAll({include: Department})
-    allEmployees.map((employee) => {
+      const allEmployees = await Employee.findAll({include: Department})
+      allEmployees.map((employee) => {
       const parsedEmployee = JSON.parse(JSON.stringify(employee))
       employees.push(parsedEmployee)
     });
     res.render('../views/pages/employee/allEmployee.ejs', {
       title: 'All employee list',
       employees
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.singleEmployeeProfileController = async (req, res, next) => {
+  const {employeeId} = req.params;
+  
+  try {
+    const employeeData = await Employee.findOne({
+      where: {
+        id: employeeId
+      },
+      include: Department
+    })
+    const employee = JSON.parse(JSON.stringify(employeeData))
+    res.render('../views/pages/employee/profile.ejs', {
+      title: `${employee.fullName} profile`,
+      employee
     })
   } catch (error) {
     next(error)

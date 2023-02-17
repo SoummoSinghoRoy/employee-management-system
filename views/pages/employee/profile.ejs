@@ -5,7 +5,68 @@
       <%- include('../../partials/sidebar.ejs') %>
     </div>
     <div class="col-9">
-      <h4>Employee Profile</h4>
+      <div class="card mt-2">
+        <div class="card-body text-secondary">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-grid gap-2 d-md-flex justify-content-end my-2">
+                <a href="#" class="btn btn-warning px-4">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="professionalInfo mt-1">
+                <h5 class="fw-bold">Fullname: <%= employee.fullName %></h5>
+                <p class="my-1 fw-semibold">Department: <%= employee.Department.departmentName %></p>
+                <p class="my-1 fw-semibold">Role: <%= employee.role %></p>
+                <p class="my-1 fw-semibold">Salary: <%= employee.salary %> BDT</p>
+                <p class="my-1 fw-semibold">Joined Date: <%= employee.joiningDate %></p>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="profilePic">
+                <img src="<%= employee.profilePic %>" alt="Profile pic" class="img-fluid img-thumbnail mx-auto d-block" width="180" height="auto">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body text-secondary">
+          <h5 class="my-3 text-dark">Additional info</h5>
+          <p class="my-1"><span class="fw-bolder">Email: </span><%= employee.email %></p>
+          <p class="my-1"><span class="fw-bolder">Contact No:</span> <%= employee.contactNo %></p>
+          <p class="my-1"><span class="fw-bolder">National Id:</span> <%= employee.nid_no %></p>
+          <p class="my-1"><span class="fw-bolder">Gender:</span> <%= employee.gender %></p>
+          <p class="my-1"><span class="fw-bolder">Date of birth: </span> <%= employee.dateOfBirth %></p>
+          <p class="my-1"><span class="fw-bolder">Education:</span> <%= employee.education %></p>
+        </div>
+
+        <div class="card-body text-secondary">
+          <h5 class="my-3 text-dark">Present address</h5>
+          <p class="my-1">
+            <span class="fw-bolder">Street:</span> <%= employee.present_street %>,
+            <span class="fw-bolder">City:</span> <%= employee.present_city %>
+          </p>
+          <p class="my-1">
+            <span class="fw-bolder">District:</span> <%= employee.present_district %>,
+            <span class="fw-bolder">Country:</span> <%= employee.present_country %>
+          </p>
+        </div>
+
+        <div class="card-body text-secondary">
+          <h5 class="my-3 text-dark">Permanent address</h5>
+          <p class="my-1">
+            <span class="fw-bolder">Street:</span> <%= employee.permanent_street %>,
+            <span class="fw-bolder">City:</span> <%= employee.permanent_city %>
+          </p>
+          <p class="my-1">
+            <span class="fw-bolder">District:</span> <%= employee.permanent_district %>,
+            <span class="fw-bolder">Country:</span> <%= employee.permanent_country %>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

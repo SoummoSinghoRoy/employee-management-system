@@ -3,7 +3,8 @@ const { isAuthenticated } = require('../middlewares/authentication');
 const {
   employeeRegistrationGetController, 
   employeeRegistrationPostController,
-  getAllEmployeeController
+  getAllEmployeeController,
+  singleEmployeeProfileController
 } = require('../controllers/employeeController');
 const {employeePicUpload} = require('../middlewares/uploadHandle');
 const upload = employeePicUpload.single('profilePic');
@@ -32,7 +33,7 @@ router.get('/', isAuthenticated, getAllEmployeeController)
 router.get('/registration', isAuthenticated, employeeRegistrationGetController);
 router.post('/registration', isAuthenticated, fileUpload, registrationValidator, employeeRegistrationPostController);
 
-router.get('/profile');
+router.get('/profile/:employeeId', isAuthenticated, singleEmployeeProfileController);
 
 
 module.exports = router;
