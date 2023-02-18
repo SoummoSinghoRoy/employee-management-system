@@ -4,7 +4,8 @@ const {
   employeeRegistrationGetController, 
   employeeRegistrationPostController,
   getAllEmployeeController,
-  singleEmployeeProfileController
+  singleEmployeeProfileController,
+  employeeEditGetController
 } = require('../controllers/employeeController');
 const {employeePicUpload} = require('../middlewares/uploadHandle');
 const upload = employeePicUpload.single('profilePic');
@@ -34,6 +35,8 @@ router.get('/registration', isAuthenticated, employeeRegistrationGetController);
 router.post('/registration', isAuthenticated, fileUpload, registrationValidator, employeeRegistrationPostController);
 
 router.get('/profile/:employeeId', isAuthenticated, singleEmployeeProfileController);
+
+router.get('/edit/:employeeId', isAuthenticated, employeeEditGetController);
 
 
 module.exports = router;

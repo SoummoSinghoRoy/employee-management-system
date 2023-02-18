@@ -20,17 +20,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     joiningDate: {
-      type: DataTypes.DATE,
-      //or
-      //type: DataTypes.DATEONLY,
+      type: DataTypes.DATEONLY,
       get() {
         return moment(this.getDataValue('joiningDate')).format('YYYY-MM-DD')
       },
       allowNull: false
     },
     dateOfBirth: {
-      // type: DataTypes.DATE,
-      //or
       type: DataTypes.DATEONLY,
       get() {
         return moment(this.getDataValue('dateOfBirth')).format('YYYY-MM-DD')
