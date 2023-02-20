@@ -206,12 +206,6 @@ exports.employeeEditPostController = async (req, res, next) => {
 
       let updatedEmployee = await Employee.findOne({where: {id: employeeId}})
       await updatedEmployee.setDepartment(employeeUpdateDepartment)
-
-      fs.unlink(`public${employee.profilePic}`, (err) => {
-        if(err) {
-          throw err
-        }
-      })
   
       res.redirect('/employee')
     } catch (error) {
