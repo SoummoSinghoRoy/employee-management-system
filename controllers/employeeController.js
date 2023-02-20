@@ -1,4 +1,5 @@
 const {validationResult} = require('express-validator');
+const fs = require('fs')
 
 const db = require('../models/index');
 let Employee = db.employee;
@@ -26,8 +27,6 @@ exports.employeeRegistrationPostController = async (req, res, next) => {
 
   if(req.file) {
     const proficePicUpload = `/uploads/employee/${req.file.filename}`
-    const errors = validationResult(req).formatWith(err => err.msg)
-    const errorMsgs = errors.array()
 
     if(!errors.isEmpty()) {     
       return res.render('pages/employee/registration.ejs', {
@@ -122,26 +121,107 @@ exports.employeeEditGetController = async (req, res, next) => {
   const { employeeId } = req.params
   try {
     const departmentList = await Department.findAll({raw: true})
-    const employeeData = await Employee.findOne({ where: { id: employeeId }, raw: true});
+    const employeeData = await Employee.findOne({ 
+      where: { id : employeeId },
+      include: Department
+    });
     const employee = JSON.parse(JSON.stringify(employeeData))
-    console.log(employee);
+
     res.render('pages/employee/editEmployee.ejs', {
-      title: `User name | edit profile`,
+      title: `${employee.fullName} | edit profile`,
       errorMsgs: [],
       departmentList,
-      employee
+      employee,
     })
   } catch (error) {
     next(error)
   }
 }
 
-/*exports.employeeEditPostController = async (req, res, next) => {
+exports.employeeEditPostController = async (req, res, next) => {
   let { fullName, department, role, salary, joiningDate, nid_no, education, email, contactNo, dateOfBirth, gender, present_street, present_city, present_district, present_country, permanent_street, permanent_city, permanent_district, permanent_country } = req.body
+  const {employeeId} = req.params;
 
   const errors = validationResult(req).formatWith(err => err.msg)
   const errorMsgs = errors.array()
   const departmentList = await Department.findAll({raw: true})
+  const employeeData = await Employee.findOne({ 
+    where: { id : employeeId },
+    include: Department
+  });
+  const employee = JSON.parse(JSON.stringify(employeeData))
+
+  if(req.file) {
+    const updateProfilePicUpload = `/uploads/employee/${req.file.filename}`
+
+    if(!errors.isEmpty()) {
+      return res.render('pages/employee/editEmployee.ejs', {
+        title: `${employee.fullName} | edit profile`,
+        errorMsgs,
+        departmentList,
+        employee,
+      }) 
+    }
+
+    try {
+      const dpId = parseInt(department)
+      const departmentName = await Department.findOne({where: {id: dpId}})
+      const employeeUpdateDepartment = departmentName
+  
+      await Employee.update(
+        {
+          fullName, role, salary, joiningDate, nid_no, education, email, contactNo, dateOfBirth, gender, present_street, present_city, present_district, present_country, permanent_street, permanent_city, permanent_district, permanent_country, profilePic: updateProfilePicUpload
+        }, 
+        { where: {
+          id: employeeId
+        }}
+      )
+      let updatedEmployee = await Employee.findOne({where: {id: employeeId}})
+      await updatedEmployee.setDepartment(employeeUpdateDepartment)
+
+      fs.unlink(`public${employee.profilePic}`, (err) => {
+        if(err) {
+          throw err
+        }
+      })
+  
+      res.redirect('/employee')
+    } catch (error) {
+      next(error)
+    }
+  } else {
+    try {
+      const dpId = parseInt(department)
+      const departmentName = await Department.findOne({where: {id: dpId}})
+      const employeeUpdateDepartment = departmentName
+  
+      await Employee.update(
+        {
+          fullName, role, salary, joiningDate, nid_no, education, email, contactNo, dateOfBirth, gender, present_street, present_city, present_district, present_country, permanent_street, permanent_city, permanent_district, permanent_country
+        }, 
+        { where: {
+          id: employeeId
+        }}
+      )
+
+      let updatedEmployee = await Employee.findOne({where: {id: employeeId}})
+      await updatedEmployee.setDepartment(employeeUpdateDepartment)
+
+      fs.unlink(`public${employee.profilePic}`, (err) => {
+        if(err) {
+          throw err
+        }
+      })
+  
+      res.redirect('/employee')
+    } catch (error) {
+      next(error)
+    }
+  }
+  
+  
+
+  /*
 
   if(req.file) {
     const proficePicUpload = `/uploads/employee/${req.file.filename}`
@@ -197,5 +277,5 @@ exports.employeeEditGetController = async (req, res, next) => {
         departmentList
       })
     }
-  }
-}*/
+  }*/
+}

@@ -1,8 +1,5 @@
 const {body} = require('express-validator');
 
-const db = require('../../models/index');
-const Employee = db.employee;
-
 const gender = ['Male', 'Female', 'Other']
 
 module.exports = [
@@ -29,12 +26,6 @@ module.exports = [
       .not().isEmpty().withMessage(`Email can't be empty`)
       .isEmail().withMessage(`Must use valid email`)
       .trim()
-      .custom(async (email) => {
-        let employee = await Employee.findOne({where: {email}})
-        if(employee) {
-          return Promise.reject(`Email must be unique`)
-        }
-      })
     ,
     body('contactNo')
       .not().isEmpty().withMessage(`Contact no. can't be empty`)
@@ -43,12 +34,6 @@ module.exports = [
     body('nid_no')
       .not().isEmpty().withMessage(`Nid no. can't be empty`)
       .trim()
-      .custom(async (nid_no) => {
-        let employee = await Employee.findOne({where: {nid_no}})
-        if(employee) {
-          return Promise.reject(`Nid no. must be unique`)
-        }
-      })
     ,
     body('education')
       .not().isEmpty().withMessage(`Education can't be empty`)
