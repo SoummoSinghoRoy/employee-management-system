@@ -88,10 +88,15 @@ exports.getAllEmployeeController = async (req, res, next) => {
       const parsedEmployee = JSON.parse(JSON.stringify(employee))
       employees.push(parsedEmployee)
     });
-    res.render('../views/pages/employee/allEmployee.ejs', {
-      title: 'All employee list',
-      employees
-    })
+    if(allEmployees.length !== 0) {
+      res.render('../views/pages/employee/allEmployee.ejs', {
+        title: 'All employee list',
+        employees
+      })
+    } else {
+      res.redirect('/employee/registration')
+    }
+    
   } catch (error) {
     next(error)
   }
@@ -212,64 +217,25 @@ exports.employeeEditPostController = async (req, res, next) => {
       next(error)
     }
   }
-  
-  
+}
 
-  /*
+exports.employeeDeleteController = async (req, res, next) => {
+  const {employeeId} = req.params;
+  const employee = await Employee.findOne({where: {id: employeeId}})
 
-  if(req.file) {
-    const proficePicUpload = `/uploads/employee/${req.file.filename}`
-    const errors = validationResult(req).formatWith(err => err.msg)
-    const errorMsgs = errors.array()
+  try {
+    await Employee.destroy({
+      where: {id: employeeId}
+    })
+    
+    fs.unlink(`public${employee.profilePic}`, (err) => {
+      if(err) {
+        throw err
+      }
+    })
 
-    if(!errors.isEmpty()) {     
-      return res.render('pages/employee/registration.ejs', {
-        title: "Employee Registration",
-        errorMsgs,
-        departmentList
-      })
-    }
-
-    try {
-      const dpId = parseInt(department)
-      const departmentName = await Department.findOne({where: {id: dpId}})
-      const employeeDepartment = departmentName
-      
-      const employee = await Employee.create({
-        fullName,
-        role,
-        salary,
-        joiningDate,
-        email,
-        contactNo,
-        nid_no,
-        education,
-        dateOfBirth,
-        gender,
-        present_street,
-        present_city,
-        present_district,
-        present_country,
-        permanent_street,
-        permanent_city,
-        permanent_district,
-        permanent_country,
-        profilePic: proficePicUpload  
-      })
-      await employee.setDepartment(employeeDepartment)
-      res.redirect('/employee')
-    } catch (error) {
-      next(error)
-    }
-  }else {
-    if(!errors.isEmpty()) {
-      const departmentList = await Department.findAll({raw: true})
-      errorMsgs.push([`Must attach a valid picture`])
-      return res.render('pages/employee/registration.ejs', {
-        title: "Employee Registration",
-        errorMsgs,
-        departmentList
-      })
-    }
-  }*/
+    res.redirect('/employee')
+  } catch (error) {
+    next(error)
+  }
 }
