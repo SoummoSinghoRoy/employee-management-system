@@ -100,6 +100,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     freezeTableName: true,
     timestamps: false
+  }, {
+    indexes: [
+      {
+        unique: false,
+        fields: ['role']
+      }
+    ]
   })
   return Employee
 }

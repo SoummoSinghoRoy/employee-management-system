@@ -81,8 +81,9 @@ exports.employeeRegistrationPostController = async (req, res, next) => {
 }
 
 exports.getAllEmployeeController = async (req, res, next) => {
+  console.log(req.query.searchTerm);
   try {
-    let employees = []
+      let employees = []
       const allEmployees = await Employee.findAll({include: Department})
       allEmployees.map((employee) => {
       const parsedEmployee = JSON.parse(JSON.stringify(employee))

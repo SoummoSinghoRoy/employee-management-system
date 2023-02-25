@@ -3,12 +3,17 @@ const dashboardRoute = require('./dashboardRoute');
 const employeeRoute = require('./employeeRoute');
 const departmentRoute = require('./departmentRoute');
 // const departmentApiRoute = require('../api/departmentApiRoute');
+const searchRoute = require('./seacrhRoute');
 
 const routes = [
   /*{
     path: '/api/department',
     handler: departmentApiRoute
   },*/
+  {
+    path: '/search',
+    handler: searchRoute
+  },
   {
     path: '/department',
     handler: departmentRoute

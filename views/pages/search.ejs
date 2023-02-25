@@ -1,18 +1,18 @@
-<%- include('../../partials/header.ejs') %>
+<%- include('../partials/header.ejs') %>
 <div class="container-fluid">
   <div class="row g-4">
     <div class="col-3 px-0" style="background-color: #86A3B8;">
-      <%- include('../../partials/sidebar.ejs') %>
+      <%- include('../partials/sidebar.ejs') %>
     </div>
     <div class="col-9">
       <div class="card my-3 py-3">
         <div class="card-body">
           <div class="d-flex">
             <h5 class="text-secondary mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
               </svg>
-            List of employee</h5>
+            <%= title %></h5>
             <form action="/search" method="get" role="search" class="d-flex ms-auto mb-3">
               <input class="form-control me-2" type="search" name="term" placeholder="Search by department, role" aria-label="Search" style="width: 234px">
               <button class="btn btn-outline-info" type="submit">Search</button>
@@ -78,18 +78,32 @@
             </table>
           </div>
         </div>
+        <% if (totalPage > 1) { %>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+                <a class="page-link" href="<%= `/search?term=${term}&page=${currentPage - 1}` %>" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <% for( let i = 1; i <= totalPage; i++ ) { %>
+                <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                  <a class="page-link" href="<%= `/search?term=${term}&page=${i}` %> "><%= i %> </a>
+                </li>
+              <% } %>
+              <li class="page-item <%= currentPage === totalPage ? 'disabled' : '' %>">
+                <a class="page-link" href="<%= `/search?term=${term}&page=${currentPage + 1}` %>" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        <% } %>
       </div>
     </div>
   </div>
 </div>
 
-
-  <!-- <script>
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    console.dir(tooltipTriggerList)
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-  </script> -->
-
-  <%- include('../../partials/footer.ejs') %>
+  <%- include('../partials/footer.ejs') %>
 </body>
 </html>
