@@ -81,18 +81,29 @@ exports.employeeRegistrationPostController = async (req, res, next) => {
 }
 
 exports.getAllEmployeeController = async (req, res, next) => {
-  console.log(req.query.searchTerm);
+  const { page } = req.query
+
+  const currentPage = parseInt(page) || 1
+  const employeePerPage = 50
   try {
-      let employees = []
-      const allEmployees = await Employee.findAll({include: Department})
-      allEmployees.map((employee) => {
+    let employees = []
+    const allEmployees = await Employee.findAndCountAll({
+      include: Department,
+      limit: employeePerPage,
+      offset: (currentPage * employeePerPage) - employeePerPage
+    })
+
+    allEmployees.rows.map((employee) => {
       const parsedEmployee = JSON.parse(JSON.stringify(employee))
       employees.push(parsedEmployee)
     });
     if(allEmployees.length !== 0) {
       res.render('../views/pages/employee/allEmployee.ejs', {
         title: 'All employee list',
-        employees
+        employees,
+        currentPage,
+        employeePerPage,
+        totalPage: allEmployees.count / employeePerPage
       })
     } else {
       res.redirect('/employee/registration')
