@@ -18,25 +18,3 @@ for(let b = 0; b < editBtns.length; b++) {
     }
   })
 }
-
-
-
-/*for(let b = 0; b < editBtns.length; b++) {
-  editBtns[b].addEventListener('click', function(event) {
-    let editBtn = event.target
-    for (let td = 0; td < tableData.length; td++) {
-      let tdNode = tableData[td]
-      if(editBtn.id === tdNode.id) {
-        let tdSpan = tdNode.children[0]
-        let tdInput = tdNode.children[1]
-        
-        tdSpan.className = 'd-none';
-        tdInput.classList = "d-block form-control"
-        editBtn.value = "Update"
-        editBtn.addEventListener('click', function () {
-          console.log('I am clicked');
-        })
-      }
-    }
-  })
-}*/

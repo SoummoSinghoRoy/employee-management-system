@@ -7,7 +7,7 @@ const searchRoute = require('./seacrhRoute');
 
 const routes = [
   /*{
-    path: '/api/department',
+    path: '/api/departments',
     handler: departmentApiRoute
   },*/
   {

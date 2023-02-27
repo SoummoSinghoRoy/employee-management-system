@@ -1,11 +1,12 @@
 const db = require('../models/index');
 const Department = db.department;
+const Employee = db.employee
 
 exports.departmentListGetController = async (req, res, next) => {
   try {
-    const departmentList = await Department.findAll({raw: true})
+    const departments = await Department.findAll({include: Employee})
     res.status(200).json({
-      Departments: departmentList
+      departments
     })
   } catch (error) {
     res.json({

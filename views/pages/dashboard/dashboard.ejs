@@ -5,11 +5,22 @@
       <%- include('../../partials/sidebar.ejs') %>
     </div>
     <div class="col-9">
-      <h4>Welcome to dashboard</h4>
-    </div>
+      <div class="row my-3">
+        <% allData.forEach(data => { %>
+          <div class="col-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= data.departmentName %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= data.Employees.length %> Employees</h6>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
   </div>
 </div>
 
 <%- include('../../partials/footer.ejs') %>
+</script>
 </body>
 </html>
