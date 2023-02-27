@@ -25,8 +25,7 @@ db.user = require('./User')(sequelize, DataTypes);
 db.employee = require('./Employee')(sequelize, DataTypes);
 db.department = require('./Department')(sequelize, DataTypes);
 
-// Department.hasOne(Employee);
-// Employee.belongsTo(Department);
+
 db.department.hasMany(db.employee, {
   onDelete: 'CASCADE',
   onUpdate: 'CASCADE'

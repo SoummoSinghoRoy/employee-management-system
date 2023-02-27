@@ -1,3 +1,7 @@
+.sidebar {
+  --bs-list-group-bg: #6C757D;
+  --bs-list-group-border-color: black
+}
 .department_collapse_nav > li{
   border: 0;
   background: none;
